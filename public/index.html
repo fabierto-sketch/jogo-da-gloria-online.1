@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d2a3f" />
+  <meta name="description" content="JOGO DA GLÓRIA ONLINE — a viagem até ao reencontro: dados, casas e cartas para jogar a dois à distância." />
+  <title>JOGO DA GLÓRIA ONLINE</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="gloria.css" />
+</head>
+<body data-theme="classic" data-mode="dark">
+  <svg class="sprite" aria-hidden="true">
+    <defs>
+      <symbol id="logo" viewBox="0 0 120 120">
+        <defs><linearGradient id="lg-l" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:var(--accent2)"/></linearGradient></defs>
+        <rect x="6" y="6" width="108" height="108" rx="30" style="fill:var(--logo-bg);stroke:var(--accent)" stroke-opacity=".55" stroke-width="2"/>
+        <path d="M60 100c-26-6-40-22-40-42 0-18 14-32 32-32 14 0 26 10 26 24 0 11-8 19-19 19-9 0-15-6-15-14 0-6 4-10 10-10" fill="none" stroke="url(#lg-l)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M54 52s-8-5-8-10q0-4 4-4 3 0 4 3 1-3 4-3 4 0 4 4 0 5-8 10z" fill="#ff4d6d"/>
+        <g transform="translate(86 92) rotate(-30)"><path d="M0-12q3 0 3 5v9l14 8v4L3 10v8l5 4v3l-8-2-8 2v-3l5-4v-8l-14 4v-4l14-8v-9q0-5 3-5z" fill="#fff"/></g>
+      </symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></symbol>
+      <symbol id="i-mic-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M9 9v3a3 3 0 0 0 5.1 2.1M15 9.3V6a3 3 0 0 0-5.7-1.3M5 11a7 7 0 0 0 11.2 5.6M19 11a7 7 0 0 1-.6 2.8M12 18v3M8 21h8"/></symbol>
+      <symbol id="i-cam" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M15 10l5-3v10l-5-3M4 6h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/></symbol>
+      <symbol id="i-cam-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M15 10l5-3v10l-2.2-1.3M10.5 6H13a2 2 0 0 1 2 2v2.5M15 15.5V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+      <symbol id="i-phone-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M10.7 13.3a16 16 0 0 0 3.3 2.5l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-3.3-2.7M5.2 13.8A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8M22 2L2 22"/></symbol>
+      <symbol id="i-volume" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+      <symbol id="i-smile" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></g></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.8-2.2 4-4 4h-2a2 2 0 0 0-1.5 3.3c.4.5.5 1 .5 1.4 0 .7-.6 1.3-3 1.3z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="12" cy="7" r="1.2"/><circle cx="16.5" cy="10.5" r="1.2"/></g></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+      <symbol id="i-history" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></symbol>
+      <symbol id="i-exit" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 6L6 18M6 6l12 12"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.4 8.4 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+      <symbol id="i-rotate" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-2.6-6.4M21 3v6h-6"/></symbol>
+      <symbol id="i-dice" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></g></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></symbol>
+      <symbol id="i-anchor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21M7 11h10M4 14a8 8 0 0 0 16 0M4 14l-1.5 2M20 14l1.5 2"/></g></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></g></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><canvas id="bg-canvas"></canvas></div>
+  <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+
+  <!-- ===================== INÍCIO ===================== -->
+  <main id="screen-home" class="screen screen-home">
+    <nav class="home-nav">
+      <button class="icon-btn" id="home-mode" title="Modo claro/escuro" aria-label="Modo claro/escuro"><svg class="ico"><use href="#i-moon"/></svg></button>
+      <button class="icon-btn" id="home-style" title="Personalizar" aria-label="Personalizar"><svg class="ico"><use href="#i-palette"/></svg></button>
+    </nav>
+    <section class="hero hero-gloria">
+      <div class="hero-text">
+        <svg class="hero-logo" aria-hidden="true"><use href="#logo"/></svg>
+        <h1 class="title">JOGO DA GLÓRIA <span>ONLINE</span></h1>
+        <p class="subtitle">A viagem de <b id="trip-from">Porto</b> até <b id="trip-to">São Gonçalo · RJ</b> — dados, aviões, saudade e muitas perguntas para se conhecerem ainda melhor. ✈️❤️</p>
+        <div id="countdown" class="countdown" hidden></div>
+        <p id="welcome" class="welcome" hidden></p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-xl" id="btn-enter">ENTRAR NO JOGO</button>
+          <div class="hero-secondary">
+            <button class="btn btn-glass" data-open="#modal-rules">REGRAS DO JOGO</button>
+            <button class="btn btn-glass" data-open="#modal-howto">COMO JOGAR</button>
+            <a class="btn btn-glass" href="/admin"><svg class="ico"><use href="#i-shield"/></svg> PAINEL DE ADMINISTRAÇÃO</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-demo" aria-hidden="true"><div id="demo-board"></div></div>
+    </section>
+    <section class="features">
+      <article class="feature glass"><span>✈️</span><h3>Uma viagem a dois</h3><p>63 casas do Porto até ao Reencontro, com aviões, a Ponte D. Luís, saudade, jet lag e alfândega.</p></article>
+      <article class="feature glass"><span>💞</span><h3>Quanto me conheces?</h3><p>Perguntas sobre o outro — e é o outro que diz se acertaste.</p></article>
+      <article class="feature glass"><span>💬</span><h3>Conversa a dois</h3><p>Perguntas para sonharem juntos e contarem coisas que ainda não disseram.</p></article>
+      <article class="feature glass"><span>🇵🇹🇧🇷</span><h3>Portugal × Brasil</h3><p>Quiz divertido: autocarro ou ônibus? Francesinha ou feijoada?</p></article>
+      <article class="feature glass"><span>🎭</span><h3>Desafios</h3><p>Pequenos desafios românticos e divertidos para fazer à frente da câmara.</p></article>
+      <article class="feature glass"><span>🎲</span><h3>Dados 3D e peças à escolha</h3><p>Ele, ela, carro, avião, cão, gato, coelho, ursinho, coração ou estrela.</p></article>
+      <article class="feature glass"><span>🎥</span><h3>Videochamada e chat</h3><p>Joguem enquanto se veem e falam, com reações animadas.</p></article>
+      <article class="feature glass"><span>🎨</span><h3>8 temas</h3><p>Do oceano clássico ao romântico, em modo claro ou escuro, com tabuleiro ilustrado ou vintage.</p></article>
+    </section>
+    <footer class="home-footer">Feito para jogar a dois · sem registo · sem instalar nada</footer>
+  </main>
+
+  <!-- ===================== ENTRAR ===================== -->
+  <div id="modal-join" class="modal" hidden>
+    <div class="modal-card glass">
+      <button class="modal-close icon-btn" data-close aria-label="Fechar"><svg class="ico"><use href="#i-x"/></svg></button>
+      <h2>Entrar no jogo</h2>
+      <form id="join-form" class="form" autocomplete="off" novalidate>
+        <label class="field"><span>Código da sala</span><input id="join-code" class="input input-code" maxlength="7" placeholder="K7M4QX" autocapitalize="characters" spellcheck="false" /></label>
+        <p id="room-info" class="room-info" aria-live="polite"></p>
+        <label class="field"><span>O teu nome</span><input id="join-name" class="input" maxlength="20" placeholder="O teu nome (ou apelido carinhoso)" /></label>
+        <button id="join-btn" class="btn btn-primary btn-lg" type="submit">Entrar na sala</button>
+        <p id="join-error" class="form-error" role="alert"></p>
+      </form>
+      <p class="muted small center">Ainda não tens código? Pede o convite ao administrador.</p>
+    </div>
+  </div>
+
+  <!-- ===================== JOGO ===================== -->
+  <div id="screen-game" class="screen screen-game" hidden>
+    <header class="topbar glass-bar">
+      <div class="brand"><svg class="brand-logo"><use href="#logo"/></svg><strong>Jogo da Glória</strong></div>
+      <button id="room-chip" class="chip" title="Copiar convite"><svg class="ico"><use href="#i-link"/></svg><span>Sala <b id="room-code">——</b></span><em>Copiar convite</em></button>
+      <div id="conn" class="pill ok"><span class="dot"></span><span id="conn-text">Ligado</span></div>
+      <div class="top-actions">
+        <button class="icon-btn" id="btn-history" title="Histórico e estatísticas"><svg class="ico"><use href="#i-history"/></svg></button>
+        <button class="icon-btn" id="btn-style" title="Personalizar"><svg class="ico"><use href="#i-palette"/></svg></button>
+        <button class="icon-btn" id="btn-mode" title="Modo claro/escuro"><svg class="ico"><use href="#i-moon"/></svg></button>
+        <button class="icon-btn danger" id="btn-leave" title="Sair da sala"><svg class="ico"><use href="#i-exit"/></svg></button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="col-left">
+        <section class="players">
+          <div class="player" data-seat="X"><div class="avatar"><span class="tk-mini"></span></div><div class="pmeta"><b class="pname">—</b><small class="pstatus">À espera</small></div><div class="pwins">0</div></div>
+          <div class="vs">❤️</div>
+          <div class="player" data-seat="O"><div class="avatar"><span class="tk-mini"></span></div><div class="pmeta"><b class="pname">—</b><small class="pstatus">À espera</small></div><div class="pwins">0</div></div>
+        </section>
+        <section class="card scoreboard">
+          <h3><svg class="ico"><use href="#i-trophy"/></svg> Resultados</h3>
+          <div class="score-grid two">
+            <div class="sx"><small id="lbl-x">Vitórias</small><b id="sc-x">0</b><em id="pct-x">0%</em></div>
+            <div class="so"><small id="lbl-o">Vitórias</small><b id="sc-o">0</b><em id="pct-o">0%</em></div>
+          </div>
+          <div class="score-rows">
+            <div><span>💞 Acertou sobre o outro</span><b id="kn-x">0</b><b id="kn-o">0</b></div>
+            <div><span>🇵🇹🇧🇷 Quiz certo</span><b id="qz-x">0</b><b id="qz-o">0</b></div>
+            <div><span>🎭 Desafios cumpridos</span><b id="ch-x">0</b><b id="ch-o">0</b></div>
+            <div><span>💬 Conversas</span><b id="tk-x">0</b><b id="tk-o">0</b></div>
+          </div>
+          <div class="score-foot"><span>Viagens: <b id="sc-games">0</b></span><span>Sequência: <b id="sc-streak">—</b></span></div>
+        </section>
+        <section class="card logbook">
+          <h3><svg class="ico"><use href="#i-history"/></svg> Diário de bordo</h3>
+          <ol id="log" class="log-list"><li class="empty">A viagem ainda não começou.</li></ol>
+        </section>
+        <section class="card recent">
+          <h3>Últimas viagens</h3>
+          <ol id="recent" class="recent-list"><li class="empty">Ainda sem viagens.</li></ol>
+        </section>
+      </aside>
+
+      <section class="stage">
+        <div id="status" class="status">A preparar a sala…</div>
+        <div id="match-bar" class="match-bar" hidden></div>
+        <div id="comment" class="comment" hidden></div>
+
+        <div id="lobby" class="lobby glass" hidden>
+          <h3>Escolhe a tua peça</h3>
+          <div id="token-pick" class="token-pick"></div>
+          <h3>Escolham o modo de jogo</h3>
+          <div id="modes" class="modes"></div>
+          <button id="btn-start" class="btn btn-primary btn-lg">Começar a viagem ✈️</button>
+        </div>
+
+        <div id="arena" class="arena">
+          <div class="board-shell">
+            <div id="board"></div>
+            <div id="card" class="gcard" hidden>
+              <div class="gcard-in">
+                <div class="gcard-head"><span id="card-icon" class="gcard-icon"></span><span id="card-deck"></span></div>
+                <p id="card-text" class="gcard-text"></p>
+                <div id="card-options" class="gcard-options"></div>
+                <div id="card-ask" class="gcard-ask" hidden>
+                  <textarea id="final-text" class="input" maxlength="200" rows="3" placeholder="Escreve a pergunta final…"></textarea>
+                  <div class="gcard-acts"><button class="btn btn-glass btn-sm" id="final-random">🎲 Sortear uma pergunta</button><button class="btn btn-primary btn-sm" id="final-send">Enviar pergunta</button></div>
+                </div>
+                <p id="card-hint" class="gcard-hint muted small"></p>
+                <div id="card-acts" class="gcard-acts"></div>
+              </div>
+            </div>
+            <div id="banner" class="gbanner" hidden></div>
+          </div>
+          <div class="roll-bar">
+            <div id="dice"></div>
+            <button id="btn-roll" class="btn btn-primary btn-lg roll-btn">🎲 Lançar os dados</button>
+            <div class="positions"><span id="pos-x"></span><span id="pos-o"></span></div>
+          </div>
+        </div>
+
+        <div id="challenge" class="challenge glass" hidden></div>
+        <div id="actions" class="actions"></div>
+        <div id="react-bar" class="react-bar"></div>
+        <div id="reactions-layer" class="reactions-layer" aria-hidden="true"></div>
+      </section>
+
+      <aside class="col-right">
+        <section id="video-panel" class="video-panel" data-state="idle">
+          <div class="video-stage">
+            <video id="remote-video" autoplay playsinline></video>
+            <div class="video-placeholder"><svg class="ico ico-xl"><use href="#i-cam"/></svg><span id="video-hint">Videochamada a dois ❤️</span></div>
+            <div id="remote-media" class="remote-media" hidden></div>
+            <video id="local-video" class="local-video" autoplay playsinline muted></video>
+            <span class="tag tag-remote" id="tag-remote"></span><span class="tag tag-local">Tu</span>
+          </div>
+          <div class="video-controls">
+            <button id="btn-call" class="ctrl ctrl-call"><svg class="ico"><use href="#i-phone"/></svg><span>Ligar</span></button>
+            <button id="btn-mic" class="ctrl" title="Microfone" disabled><svg class="ico"><use href="#i-mic"/></svg></button>
+            <button id="btn-cam" class="ctrl" title="Câmara" disabled><svg class="ico"><use href="#i-cam"/></svg></button>
+            <label class="ctrl vol" title="Volume"><svg class="ico"><use href="#i-volume"/></svg><input type="range" id="vol" min="0" max="100" value="100" /></label>
+            <button id="btn-hangup" class="ctrl ctrl-hangup" title="Desligar" disabled><svg class="ico"><use href="#i-phone-off"/></svg></button>
+            <button id="btn-expand" class="ctrl" title="Ecrã inteiro"><svg class="ico"><use href="#i-expand"/></svg></button>
+          </div>
+        </section>
+        <section class="chat" id="chat">
+          <header><svg class="ico"><use href="#i-chat"/></svg> Chat <span id="unread" class="badge" hidden>0</span><span id="typing" class="typing" hidden>a escrever…</span></header>
+          <div id="chat-list" class="chat-list" aria-live="polite"></div>
+          <form id="chat-form" class="chat-form" autocomplete="off">
+            <button type="button" id="btn-emoji" class="icon-btn" aria-label="Emojis"><svg class="ico"><use href="#i-smile"/></svg></button>
+            <input id="chat-input" class="input" maxlength="500" placeholder="Escreve uma mensagem…" />
+            <button type="submit" class="icon-btn send" aria-label="Enviar"><svg class="ico"><use href="#i-send"/></svg></button>
+            <div id="emoji-picker" class="emoji-picker glass" hidden></div>
+          </form>
+        </section>
+      </aside>
+    </div>
+    <button id="chat-fab" class="chat-fab" aria-label="Ir para o chat"><svg class="ico"><use href="#i-chat"/></svg><span id="fab-badge" class="badge" hidden>0</span></button>
+  </div>
+
+  <!-- ===================== MODAIS ===================== -->
+  <div id="modal-rules" class="modal" hidden>
+    <div class="modal-card glass wide">
+      <button class="modal-close icon-btn" data-close aria-label="Fechar"><svg class="ico"><use href="#i-x"/></svg></button>
+      <h2>Regras do jogo</h2>
+      <ol class="rules">
+        <li>Os dois partem do <b>Porto</b> (casa 0). Na sua vez, cada um lança <b>dois dados</b> e avança a soma.</li>
+        <li><b>Primeiro lançamento mágico:</b> 6+3 leva direto à casa 26 e 5+4 à casa 53.</li>
+        <li>✈️ <b>Aviões</b> (5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59): «de avião em avião» — voas para o próximo avião e jogas outra vez.</li>
+        <li>🌉 <b>Ponte D. Luís</b> (6): atravessas até à 12 e jogas outra vez. 💌 26 e 🎫 53: jogas outra vez.</li>
+        <li>💭 <b>Saudade</b> (19): uma vez sem jogar. 😴 <b>Jet lag</b> (31): duas vezes. 🛃 <b>Alfândega</b> (52): três vezes.</li>
+        <li>🕐 <b>Fuso horário</b> (42): voltas à 30. ❌ <b>Voo cancelado</b> (58): voltas à 30.</li>
+        <li><b>Cartas:</b> 💞 Quanto me conheces? (o outro diz se acertaste: +2), 💬 Conversa a dois (+1), 🇵🇹🇧🇷 Portugal × Brasil (certo +2, errado −1), 🎭 Desafio (cumprido +3, recusado −2) e 🍀 Sorte do amor.</li>
+        <li>Para chegar ao <b>Reencontro (63)</b> é preciso a conta certa; o que sobrar faz recuar.</li>
+        <li>No Reencontro, o outro escreve (ou sorteia) a <b>pergunta final</b>. Acertaste? Ganhaste! Erraste? Voltas à 56 e tentas outra vez.</li>
+        <li>Dados, casas e cartas são resolvidos pelo servidor — e a resposta certa do quiz nunca chega ao navegador.</li>
+      </ol>
+      <h3>Modos</h3>
+      <ul class="rules" id="rules-modes"></ul>
+    </div>
+  </div>
+
+  <div id="modal-howto" class="modal" hidden>
+    <div class="modal-card glass">
+      <button class="modal-close icon-btn" data-close aria-label="Fechar"><svg class="ico"><use href="#i-x"/></svg></button>
+      <h2>Como jogar</h2>
+      <ol class="steps">
+        <li><b>Recebe o convite</b> (um link ou um código de 6 caracteres) e entra com o teu nome.</li>
+        <li><b>Escolhe a tua peça</b> e o modo de jogo, e carreguem em «Começar a viagem».</li>
+        <li>Na tua vez, carrega em <b>Lançar os dados</b> e vê a tua peça avançar.</li>
+        <li>Quando sair uma <b>carta</b>, respondam em voz alta (ou no chat). Quem não tirou a carta diz se acertou ou se cumpriu.</li>
+        <li>Chega ao <b>Reencontro</b> com a conta certa e acerta a pergunta final para ganhar! ❤️</li>
+      </ol>
+      <p class="muted small">Se a ligação cair, o jogo volta a ligar sozinho e a viagem continua onde estava.</p>
+    </div>
+  </div>
+
+  <div id="modal-style" class="modal" hidden>
+    <div class="modal-card glass wide">
+      <button class="modal-close icon-btn" data-close aria-label="Fechar"><svg class="ico"><use href="#i-x"/></svg></button>
+      <h2>Personalizar</h2>
+      <h3>Tema visual</h3>
+      <div id="opt-theme" class="theme-grid"></div>
+      <div class="opt-row"><h3>Modo</h3><div class="seg" id="opt-mode"><button data-v="dark">🌙 Escuro</button><button data-v="light">☀️ Claro</button></div></div>
+      <div class="opt-row"><h3>Cor do mar</h3><div class="swatches" id="opt-board"></div></div>
+      <div class="opt-row"><h3>Estilo do tabuleiro</h3><div class="seg" id="opt-pieces"><button data-v="illustrated">Ilustrado</button><button data-v="vintage">Vintage (pergaminho)</button><button data-v="night">Noite estrelada</button></div></div>
+      <div class="opt-row"><h3>Fundo</h3><div class="seg" id="opt-bg"><button data-v="aurora">Aurora</button><button data-v="particles">Partículas</button><button data-v="stars">Estrelas</button><button data-v="solid">Liso</button></div></div>
+      <div class="opt-row"><h3>Animações</h3><div class="seg" id="opt-anim"><button data-v="full">Completas</button><button data-v="reduced">Reduzidas</button><button data-v="off">Desligadas</button></div></div>
+      <div class="opt-row"><h3>Sons</h3><div class="seg" id="opt-sound"><button data-v="on">Ligados</button><button data-v="off">Desligados</button></div><input type="range" id="opt-volume" min="0" max="100" /></div>
+    </div>
+  </div>
+
+  <div id="modal-history" class="modal" hidden>
+    <div class="modal-card glass wide">
+      <button class="modal-close icon-btn" data-close aria-label="Fechar"><svg class="ico"><use href="#i-x"/></svg></button>
+      <h2>Histórico e estatísticas</h2>
+      <div id="hist-stats" class="hist-stats"></div>
+      <div class="table-wrap"><table class="hist-table"><thead><tr><th>Data e hora</th><th>Modo</th><th>Vencedor</th><th>Lançamentos</th><th>💞 Conheces</th><th>🇵🇹🇧🇷 Quiz</th><th>🎭 Desafios</th></tr></thead><tbody id="hist-body"></tbody></table></div>
+      <div class="modal-actions"><span id="clear-status" class="muted small"></span><button id="btn-clear" class="btn btn-danger btn-sm">Apagar histórico</button></div>
+    </div>
+  </div>
+
+  <div id="modal-confirm" class="modal" hidden>
+    <div class="modal-card glass small">
+      <h2 id="confirm-title">Tens a certeza?</h2>
+      <p id="confirm-text" class="muted"></p>
+      <div class="modal-actions"><button class="btn btn-glass" data-close>Cancelar</button><button id="confirm-ok" class="btn btn-danger">Confirmar</button></div>
+    </div>
+  </div>
+
+  <div id="modal-call" class="modal" hidden>
+    <div class="modal-card glass small center">
+      <div class="call-pulse"><svg class="ico ico-xl"><use href="#i-phone"/></svg></div>
+      <h2><span id="call-from">O teu amor</span> está a ligar</h2>
+      <div class="modal-actions center"><button id="call-decline" class="btn btn-danger">Recusar</button><button id="call-accept" class="btn btn-success">Atender</button></div>
+    </div>
+  </div>
+
+  <div id="celebrate" class="celebrate" hidden>
+    <div class="celebrate-card glass">
+      <div id="cel-piece" class="cel-piece">❤️</div>
+      <h2 id="cel-title">Vitória!</h2>
+      <p id="cel-text"></p>
+      <div id="cel-stats" class="cel-stats"></div>
+      <button class="btn btn-primary" id="cel-close">Continuar</button>
+    </div>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="board.js"></script>
+  <script src="video.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

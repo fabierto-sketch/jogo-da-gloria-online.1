@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Painel de Administração · JOGO DA GLÓRIA ONLINE</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="gloria.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin" data-theme="classic" data-mode="dark" data-bg="aurora">
+  <div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+  <!-- Login -->
+  <main id="login-view" class="login-wrap" hidden>
+    <div class="login-card glass">
+      <svg class="login-logo" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 88S12 64 12 38q0-18 18-20 12 0 20 12 8-12 20-12 18 2 18 20 0 26-38 50z" fill="#ff4d6d"/><path d="M50 30q3 0 3 5v9l14 8v4L53 52v8l5 4v3l-8-2-8 2v-3l5-4v-8l-14 4v-4l14-8v-9q0-5 3-5z" fill="#fff"/></svg>
+      <h1>Painel de Administração</h1>
+      <p class="muted">JOGO DA GLÓRIA ONLINE · acesso reservado ao administrador</p>
+      <form id="login-form" class="form">
+        <label class="field"><span>Palavra-passe</span><input id="login-password" class="input" type="password" autocomplete="current-password" required /></label>
+        <button class="btn btn-primary btn-lg" type="submit">Entrar</button>
+        <p id="login-error" class="form-error" role="alert"></p>
+      </form>
+      <p class="small"><a class="link" href="/">← Voltar ao jogo</a></p>
+    </div>
+  </main>
+
+  <!-- Painel -->
+  <div id="panel-view" class="admin-shell" hidden>
+    <header class="topbar glass-bar">
+      <a href="/" class="admin-brand"><b>Jogo da Glória</b> <span class="muted">Admin</span></a>
+      <nav class="admin-tabs" id="admin-tabs">
+        <button data-tab="overview" class="on">Visão geral</button>
+        <button data-tab="rooms">Salas</button>
+        <button data-tab="settings">Definições</button>
+        <button data-tab="activity">Atividade</button>
+      </nav>
+      <div class="top-actions">
+        <button id="btn-mode" class="btn btn-glass btn-sm" title="Modo claro/escuro">🌓</button>
+        <button id="btn-logout-all" class="btn btn-glass btn-sm">Terminar todas as sessões</button>
+        <button id="btn-logout" class="btn btn-glass btn-sm">Sair</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <!-- Visão geral -->
+      <section data-panel="overview">
+        <div class="admin-card glass create-card">
+          <div>
+            <h2>Criar nova sala</h2>
+            <p class="muted">Sala privada com código de 6 caracteres, link de convite e lugar para dois jogadores.</p>
+          </div>
+          <form id="create-form" class="row">
+            <input id="room-label" class="input grow" maxlength="40" placeholder="Nome da sala (opcional), ex.: Nós os dois ❤️" />
+            <button class="btn btn-primary" type="submit">＋ Criar sala</button>
+          </form>
+          <div id="new-room" class="new-room" hidden>
+            <div><small>Código</small><b id="new-code"></b></div>
+            <div class="grow"><small>Convite</small><a id="new-link" target="_blank" rel="noopener"></a></div>
+            <div class="row"><button id="btn-new-copy" class="btn btn-primary btn-sm">Copiar convite</button><a id="btn-new-join" class="btn btn-glass btn-sm" target="_blank" rel="noopener">Abrir sala</a></div>
+          </div>
+        </div>
+        <div class="kpis" id="kpis"></div>
+        <div class="two-col">
+          <div class="admin-card glass">
+            <h2>Viagens nos últimos 14 dias</h2>
+            <div id="chart" class="chart"></div>
+          </div>
+          <div class="admin-card glass">
+            <h2>Cartas</h2>
+            <div id="results" class="results"></div>
+          </div>
+        </div>
+        <div class="admin-card glass">
+          <h2>Últimas viagens</h2>
+          <div class="table-wrap"><table class="hist-table"><thead><tr><th>Quando</th><th>Sala</th><th>Modo</th><th>Jogadores</th><th>Vencedor</th><th>Lançamentos</th></tr></thead><tbody id="recent-games"></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- Salas -->
+      <section data-panel="rooms" hidden>
+        <div class="row wrap">
+          <h2 class="section-title grow">Salas <small id="rooms-updated" class="muted"></small></h2>
+          <select id="rooms-filter" class="input select"><option value="">Todas</option><option value="live">Com jogadores online</option><option value="open">Abertas</option><option value="closed">Fechadas</option></select>
+          <input id="rooms-search" class="input search" placeholder="Pesquisar código ou nome…" />
+        </div>
+        <div id="rooms" class="rooms-grid"></div>
+        <p id="rooms-empty" class="muted center" hidden>Ainda não há salas. Cria a primeira em «Visão geral».</p>
+      </section>
+
+      <!-- Definições -->
+      <section data-panel="settings" hidden>
+        <div class="admin-card glass">
+          <h2>Definições gerais</h2>
+          <form id="settings-form" class="form settings-grid">
+            <label class="field"><span>Modo de jogo por omissão</span><select id="s-defaultMode" class="input select"></select></label>
+            <label class="field"><span>Data do reencontro (contagem decrescente)</span><input id="s-reunionDate" class="input" type="date" /></label>
+            <label class="field"><span>Partida (casa 0)</span><input id="s-origin" class="input" maxlength="40" placeholder="Porto" /></label>
+            <label class="field"><span>Chegada — o Reencontro (casa 63)</span><input id="s-destination" class="input" maxlength="40" placeholder="São Gonçalo · RJ" /></label>
+            <label class="field"><span>Avanço automático para a próxima viagem (segundos, 0 = desligado)</span><input id="s-autoNextSeconds" class="input" type="number" min="0" max="60" /></label>
+            <label class="field full"><span>Mensagem de boas-vindas (página inicial)</span><input id="s-welcomeMessage" class="input" maxlength="200" placeholder="Ex.: Para a Bernardete, com amor ❤️" /></label>
+            <label class="check"><input type="checkbox" id="s-chatEnabled" /> <span>Chat ativo</span></label>
+            <label class="check"><input type="checkbox" id="s-reactionsEnabled" /> <span>Reações animadas ativas</span></label>
+            <label class="check"><input type="checkbox" id="s-tauntsEnabled" /> <span>Provocações amigáveis</span></label>
+                        <label class="check"><input type="checkbox" id="s-playersCanClearHistory" /> <span>Jogadores podem apagar o histórico (com acordo dos dois)</span></label>
+            <label class="field full"><span>💞 As vossas perguntas «Quanto me conheces?» (uma por linha; use {outro} para o nome do outro)</span><textarea id="s-customKnowme" class="input" rows="5" placeholder="Qual é o meu sabor de gelado preferido, {outro}?"></textarea></label>
+            <label class="field full"><span>💬 As vossas perguntas de conversa (uma por linha)</span><textarea id="s-customTalk" class="input" rows="5"></textarea></label>
+            <label class="field full"><span>🎭 Os vossos desafios (um por linha)</span><textarea id="s-customChallenges" class="input" rows="5"></textarea></label>
+            <label class="field full"><span>Desafios surpresa de quem perde a viagem (um por linha)</span><textarea id="s-surpriseChallenges" class="input" rows="10"></textarea></label>
+            <div class="row full">
+              <button type="button" id="btn-reset-challenges" class="btn btn-glass">Repor desafios originais</button>
+              <span class="grow"></span>
+              <button type="submit" class="btn btn-primary">Guardar definições</button>
+            </div>
+            <p id="settings-msg" class="small full"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- Atividade -->
+      <section data-panel="activity" hidden>
+        <div class="admin-card glass">
+          <h2>Servidor</h2>
+          <div id="server-info" class="kpis"></div>
+        </div>
+        <div class="admin-card glass">
+          <h2>Histórico de utilização</h2>
+          <ul id="activity" class="activity"></ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal-confirm" class="modal" hidden>
+    <div class="modal-card glass">
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-text" class="muted"></p>
+      <div class="modal-actions"><button class="btn btn-glass" data-close>Cancelar</button><button id="confirm-ok" class="btn btn-danger">Confirmar</button></div>
+    </div>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <script src="admin-panel.js"></script>
+</body>
+</html>

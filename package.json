@@ -1,0 +1,24 @@
+{
+  "name": "jogo-da-gloria-online",
+  "version": "1.0.0",
+  "description": "Jogo da Glória Online: a viagem até ao reencontro — dados, casas e cartas para jogar a dois, com videochamada e chat.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node test/run-tests.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.1"
+  },
+  "license": "MIT",
+  "private": true
+}
